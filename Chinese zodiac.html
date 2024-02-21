@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese Animal Symbol</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <h1>Chinese Animal Symbol</h1>
+    <div>
+        <label for="yearInput">Enter year (1900-2300):</label>
+        <input type="number" id="yearInput" min="1900" max="2300"/>
+        <button type="button" id="showResult">Result</button>
+        <button type="button" id="resetValue">Reset</button>
+    </div>
+    
+    <div>
+        <img id="animalImage" width="100" height="100"/><br>
+        <b id="animalName"></b>
+        <p id="animalDetails"></p>
+    </div>
+
+    <script>
+        document.getElementById('showResult').addEventListener('click', function(){
+            const yearInput = document.getElementById('yearInput').value;
+            const animalImage = document.getElementById('animalImage');
+            const animalName = document.getElementById('animalName');
+            const animalDetails = document.getElementById('animalDetails');
+            
+            const yearInputInt = parseInt(yearInput, 10);
+            if (yearInputInt >= 1900 && yearInputInt <= 2300) {
+                // Map the image file names to the corresponding animal names
+                const animalNames = ['rat', 'ox', 'tiger', 'rabbit', 'dragon', 'snake', 'horse', 'goat', 'monkey', 'rooster', 'dog', 'pig'];
+                
+                // Map the animal names to their corresponding details
+                const Details = [
+                    "Rat is much more than just a furry creature to the Chinese. It symbolizes cleverness and is believed to bring good luck in solving problems.",
+                    "Oxen mean a lot in Chinese culture. They stand for things like wealth, good luck, being hard-working and never giving up.",
+                    "Tigers are seen as symbols packed with vitality, courage, and majestic power.",
+                    "Rabbit is not just a cute, furry friend. It stands for graciousness, kindness, and a warm heart, spreading vibes of compassion, tenderness, and sheer elegance wherever it goes.",
+                    "Dragon is a big symbol of power and good luck and is often connected with rulers and emperors.",
+                    "Snake is not just a reptile in Chinese tradition but a symbol thought to foretell the future. Calm yet mysteriously enchanting, Snakes are believed to have the power to extend life.",
+                    "Horses are not just valued for their physical strength in Chinese culture; they symbolize much more think faithfulness, nobility, and an indomitable spirit that simply can not be beaten.",
+                    "Goat is traditional symbolism of prosperity and positivity.",
+                    "Monkeys are curious and playful, have a special place in Chinese tales and traditions.",
+                    "Roosters are not just your average barnyard birds in the vast expanse of Chinese traditions. They stand as beacons of honesty, lighting the way with their moral and physical strength.",
+                    "Known for their steadfast loyalty, dogs in the Chinese zodiac are not just furry companions but also symbols of sincere friendship and unwavering support.",
+                    "Pig in Chinese culture is admired and loved for its joyful, carefree spirit and its ability to enjoy lifes pleasures without a rush."
+                ];
+
+                // Determine the index for the array based on the remainder when dividing the year by 12
+                const index = (parseInt(yearInput) - 1900) % 12;
+
+                // Display the animal information
+                const imagePath = "/Users/xiaohuidexiaojiaoqi/Desktop/601/h2 Zibo Wang/" + animalNames[index] + ".png";
+                animalImage.src = imagePath;
+                animalName.innerText = animalNames[index];
+                animalDetails.innerText = "Details for " + animalNames[index] + ": " + Details[index];
+            } else {
+                alert('no data found for that year.');
+            }
+        });
+
+        document.getElementById('resetValue').addEventListener('click', ()=>{
+            document.getElementById('yearInput').value = '';
+            document.getElementById('animalImage').src = '';
+            document.getElementById('animalName').innerText = '';
+            document.getElementById('animalDetails').innerText = '';
+        });
+
+    </script>
+</body>
+</html>
